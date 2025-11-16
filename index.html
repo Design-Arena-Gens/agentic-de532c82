@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ya</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 600px;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        h1 {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .counter {
+            font-size: 2rem;
+            margin-top: 2rem;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ya!</h1>
+        <p>Welcome to Ya</p>
+        <button class="button" onclick="sayYa()">Say Ya!</button>
+        <div class="counter">Ya count: <span id="count">0</span></div>
+    </div>
+
+    <script>
+        let count = 0;
+
+        function sayYa() {
+            count++;
+            document.getElementById('count').textContent = count;
+
+            // Create floating "Ya!" text
+            const ya = document.createElement('div');
+            ya.textContent = 'Ya!';
+            ya.style.position = 'fixed';
+            ya.style.left = Math.random() * window.innerWidth + 'px';
+            ya.style.top = window.innerHeight + 'px';
+            ya.style.fontSize = '2rem';
+            ya.style.fontWeight = 'bold';
+            ya.style.color = 'white';
+            ya.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.5)';
+            ya.style.transition = 'all 2s ease-out';
+            ya.style.pointerEvents = 'none';
+            ya.style.zIndex = '1000';
+
+            document.body.appendChild(ya);
+
+            setTimeout(() => {
+                ya.style.top = '-100px';
+                ya.style.opacity = '0';
+            }, 10);
+
+            setTimeout(() => {
+                document.body.removeChild(ya);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
